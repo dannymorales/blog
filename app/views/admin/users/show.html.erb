@@ -1,0 +1,8 @@
+<h3 class="user">
+	<%= @user.email %>
+	<%= @user.name %>
+	<%= @user.address %>
+
+	<%= link_to 'edit this user', edit_admin_user_path(@user) %>
+		<%= link_to 'delete this user', admin_user_path(@user), method: :delete, data: {confirm: 'are you sure you want to delete this user?'} %>
+</h3>

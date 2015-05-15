@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RailsBlog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="header">	
+	<% if user_signed_in? %>
+		<p> Hello <%= current_user.name %></p>
+		<%= link_to "New Post", new_post_path %>
+		<%= link_to 'Log Out', destroy_user_session_path, method: :delete, data: {confirm: 'are you sure you want to sign out?'} %>
+		<% else %>
+			<%= link_to 'login', user_session_path %>
+			<%= link_to 'signup', new_user_registration_path %>
+	<% end %>
+	<% flash.each do |name, msg| %>
+	<%= content_tag(:div, msg, class: 'alert') %>
+	<% end %>
+</div>
+
+
+
+<div id="container1">
+
+
+	<div class="col1">
+		<ul>
+			<li class="category">Website</li>
+			<li><%= link_to 'blog', root_path %></li>
+			<li>About</li>
+		</ul>
+
+	</div>
+
+	<div class="col2">
+	
+		<%= yield %>
+	</div>
+
+	<div class="col3">
+		
+		"column 3 goes here"
+	</div>
+
+</div>
+
+
+
+<footer>This is the footer</footer>
+
+</body>
+</html>
